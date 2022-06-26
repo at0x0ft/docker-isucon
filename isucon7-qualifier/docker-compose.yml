@@ -2,9 +2,8 @@ version: '3'
 services:
   bench:
     build:
-      context: ./docker/bench
-      args:
-        GIT_URL: https://github.com/at0x0ft/isucon7-qualify.git
+      context: .
+      dockerfile: ./docker/bench/Dockerfile
     image: isucon7-qualifier-bench
     depends_on:
       - web
@@ -12,9 +11,8 @@ services:
       - frontend
   web:
     build:
-      context: ./docker/web
-      args:
-        GIT_URL: https://github.com/at0x0ft/isucon7-qualify.git
+      context: .
+      dockerfile: ./docker/web/Dockerfile
     image: isucon7-qualifier-web:nginx
     networks:
       - frontend
@@ -26,12 +24,11 @@ services:
   app:
     build:
       #context: ./docker/app/golang
-      context: ./docker/app/nodejs
+      context: .
+      dockerfile: ./docker/app/nodejs/Dockerfile
       #context: ./docker/app/perl
       # context: ./docker/app/python
       #context: ./docker/app/ruby
-      args:
-        GIT_URL: https://github.com/at0x0ft/isucon7-qualify.git
     #image: isucon7-qualifier-app:golang
     image: isucon7-qualifier-app:nodejs
     #image: isucon7-qualifier-app:perl
@@ -40,7 +37,7 @@ services:
     networks:
       - backend
     depends_on:
-       - db
+      - db
     ports:
       - "5000"
     environment:
