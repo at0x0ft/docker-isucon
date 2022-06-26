@@ -21,6 +21,8 @@ services:
       - app
     ports:
       - "80:80"
+    volumes:
+      - ./log/nginx:/var/log/nginx
   app:
     build:
       #context: ./docker/app/golang
