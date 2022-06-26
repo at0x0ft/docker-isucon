@@ -61,6 +61,8 @@ services:
       #MYSQL_DATABASE: isubata
       #MYSQL_USER: isucon
       #MYSQL_PASSWORD: isucon
+    volumes:
+      - ./log/mysql:/var/log/mysql
 networks:
   frontend:
   backend:
