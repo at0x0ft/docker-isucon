@@ -49,9 +49,8 @@ services:
       ISUBATA_DB_HOST: db
   db:
     build:
-      context: ./docker/db
-      args:
-        GIT_URL: https://github.com/at0x0ft/isucon7-qualify.git
+      context: .
+      dockerfile: ./docker/db/Dockerfile
     image: isucon7-qualifier-db
     ports:
       - "3306"
